@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://springframework.org/schema/util
+       http://springframework.org/schema/util/spring-util-4.0.xsd">
+	
+	<bean id="person" class="com.example.bean.Person" name="ren">
+		<constructor-arg>
+			<bean  class="com.example.bean.Phone">
+				<property name="name" value="Meizu"/>
+			</bean>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 
+		指定Bean的实现类不是自定义的类，而是PropertyPathFactoryBean,即用其他bean的属性定义成一个Bean  
+		property指定具体是哪个bean、哪个属性
+	-->
+	<bean id="phone" class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+		<property name="targetBeanName" value="person"></property>
+		<property name="propertyPath" value="phone"></property>
+	</bean>
+	
+	<!-- 指定其他Bean的属性作为本bean的属性值 ，该bean指定  person中phone对象的name为本bean的值-->
+	<bean id="phone2" class="com.example.bean.Phone">
+		<property name="name">
+			<bean id="person.phone.name" 
+				class="org.springframework.beans.factory.config.PropertyPathFactoryBean"/>
+		</property>
+	</bean>
+	
+	<!-- 
+		phone简写
+		<util:property-path id="phone" path="person.phone"/>
+	
+		phone2简写
+		
+		<bean id="phone2" class="com.example.bean.Phone">
+			<property name="name">
+				<util:property-path path="person.phone.age"/>
+			</property>
+		</bean>
+	 -->
+</beans>
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 定义一个手机bean，设置作用域为多实例 -->
+	<bean id="phone" class="com.example.bean.Phone" scope="prototype">
+		<property name="name" value="魅族"/>
+	</bean>
+	
+	<!-- 定义一个人bean, 指定抽象方法 getPhone 实现的具体内容，即方法最终返回的具体bean,一般是多实例作用域bean-->
+	<bean id="person" class="com.example.bean.Person">
+		<lookup-method name="getPhone"  bean="phone"/>
+	</bean>
+	
+</beans>
+
+

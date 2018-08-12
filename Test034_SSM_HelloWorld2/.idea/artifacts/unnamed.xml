@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="unnamed">
+    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="archive" name="HelloWorld2.jar">
+            <element id="module-output" name="HelloWorld2" />
+          </element>
+          <element id="library" level="project" name="lib1" />
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="HelloWorld2/web/Web" />
+      <element id="javaee-facet-resources" facet="HelloWorld2/web/Web2" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 
+		id:唯一标识 ，指代一个类
+		class: 类的全路径名
+	 
+	<bean id="helloWorld" class="com.example.daomain.HelloWorld"></bean>-->
+	
+	<!-- 懒加载 -->
+	<bean id="lazyHelloWorld" class="com.example.daomain.HelloWorld" lazy-init="true"></bean>
+</beans>
+           
+

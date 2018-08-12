@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+		<!-- 使用嵌套式Bean -->
+        <bean id="chinese" class="com.example.beanimpl.Chinese">
+       		<constructor-arg index="0" value="小明"></constructor-arg>
+       		<constructor-arg index="1" >
+       			<!-- 可以不指定id -->
+       			<bean id="winphone" class="com.example.beanimpl.WinPhone">
+       				<constructor-arg value="微软"/>
+       			</bean>
+       		</constructor-arg>
+        </bean>
+        
+        <bean id="xiaoliu" class="com.example.beanimpl.Chinese">
+        	<property name="phone">
+				<bean  class="com.example.beanimpl.AndroidPhone">
+					<property name="name"  value="小米"></property>
+				</bean>        		
+        	</property> 	
+        </bean>
+        
+        <bean id="androidPhone" class="com.example.beanimpl.AndroidPhone"/>
+        <bean id="applePhone" class="com.example.beanimpl.ApplePhone"/>
+        
+        <!-- 注入不同属性值 -->
+        <bean id="tuhao" class="com.example.beanimpl.Chinese">
+       		<constructor-arg index="0" value="小强"></constructor-arg>
+       		<constructor-arg index="1" >
+       			<!-- 可以不指定id -->
+       			<bean class="com.example.beanimpl.WinPhone">
+       				<constructor-arg value="微软"/>
+       			</bean>
+       		</constructor-arg>
+       		
+       		<!-- 集合属性 -->
+       		<property name="books">
+       			<list>
+       				<value>战争与和平</value>
+       				<value>红楼梦</value>
+       				<value>瓦尔登湖</value>
+       			</list>
+       		</property>
+       		
+       		<!-- map属性 -->
+       		<property name="scores">
+       			<map>
+       				<entry  key="语文" value="90"></entry>
+       				<entry  key="数学" value="98"></entry>
+       				<entry  key="英语" value="96"></entry>
+       			</map>
+       		</property>
+       		
+       		<!-- map属性2 -->
+       		<property name="allPhones">
+       			<map>
+					<entry key="安卓手机" value-ref="androidPhone"></entry>
+					<entry key="苹果手机" value-ref="applePhone"></entry>
+       			</map>
+       		</property>
+       		
+       		<!-- properties属性 -->
+       		<property name="health">
+       			<props>
+       				<prop key="身高">178</prop>
+       				<prop key="体重">150</prop>
+       			</props>
+       		</property>
+       		
+       		<!-- set属性 -->
+       		<property name="info">
+       			<set>
+       				<bean class="com.example.beanimpl.ApplePhone"></bean>
+       				<ref bean="androidPhone"/>
+       				<value>我只是一个字符串</value>
+       				<props>
+       					<prop key="目标">二逼青年</prop>
+       					<prop key="工作">程序猿</prop>
+       				</props>
+       			</set>
+       		</property>
+       		
+       		<!-- 数组属性 -->
+       		<property name="food">
+				<list>
+					<value>酸菜鱼</value>
+					<value>饺子</value>
+				</list>       		
+       		</property>
+        </bean>
+        
+        <!-- 使用组合属性 -->
+        <bean id="xiaohong" class="com.example.beanimpl.Chinese">
+        	<!-- 一定注意要定义bean，否则下一步设置属性对象为空，而且该句一定在下一句之前 -->
+        	<property name="phone" ref="androidPhone"/> 	
+        	
+        	<property name="phone.name"  value="魅族"></property>
+        </bean>
+</beans>

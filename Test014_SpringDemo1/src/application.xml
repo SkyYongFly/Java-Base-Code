@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 定义一个手机bean，并且设置名称 -->
+	<bean id="phone" class="com.example.bean.Phone">
+		<property name="name" value="魅族"/>
+	</bean>
+	
+	<!-- 定义一个人bean,设置成员变量 -->
+	<bean id="person" class="com.example.bean.Person">
+		<constructor-arg  ref="phone"/>
+	</bean>
+	
+	<!-- 定义一个人bean,设置成员变量 -->
+	<bean id="noPhonePerson" class="com.example.bean.Person">
+	</bean>
+
+</beans>
+
+

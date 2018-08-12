@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd ">
+
+    <!--配置注解扫描路径-->
+    <context:component-scan base-package="com.example.controller"/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--返回的视图页面前缀，即所在路径-->
+        <property name="prefix">
+            <value>/WEB-INF/content/</value>
+        </property>
+
+        <!--返回的视图页面后缀，即为jsp页面-->
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+</beans>

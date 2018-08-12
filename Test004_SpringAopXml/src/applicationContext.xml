@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+           
+	<bean id="personDao" class="com.example.dao.PersonDaoImpl"></bean>
+	<bean id="transaction" class="com.example.dao.Transaction"></bean>
+	
+	<aop:config>
+		<!-- 切入点表达式，目的是确定目标类 -->
+		<aop:pointcut 
+			expression="execution(* com.example.dao.PersonDaoImpl.*(..))"
+			id="perform"/>
+		
+		<!-- 声明切面对象，ref指代的就是切面对象，aop:before声明目标方法之前前执行的代理方法 -->
+		<aop:aspect ref="transaction">
+			<aop:before method="beginTransaction" pointcut-ref="perform"/>
+			<aop:after method="commit" pointcut-ref="perform"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
+           
+

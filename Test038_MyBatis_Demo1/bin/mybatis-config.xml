@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <configuration>
+ 	<!-- 定义别名 -->
+	<typeAliases>
+		<typeAlias alias="user" type="com.example.pojo.User"/>
+	</typeAliases>
+	
+	
+ 	<!-- 定义数据库配置 -->
+ 	<environments default="development">
+ 		<environment id="development">
+ 			
+ 			<!-- 事务管理器 -->
+			<transactionManager type="jdbc"/>
+			
+			<!-- 数据源连接 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/example?useSSL=false"/>
+				<property name="username" value="root"/>
+				<property name="password" value="root"/>			
+			</dataSource> 		
+ 		</environment>
+ 	</environments>
+
+	
+	<!-- 映射文件 --> 	
+	<mappers>
+		<mapper resource="com/example/mappers/UserMapper.xml"></mapper>
+	</mappers>
+ 
+ </configuration> 

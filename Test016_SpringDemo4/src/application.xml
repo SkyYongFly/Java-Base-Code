@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 使用静态工厂创建phone -->
+	<bean id="winphone" class="com.example.factory.StaticPhoneFactory" factory-method="makePhone">
+		<!-- 给静态工厂方法设置参数 -->
+		<constructor-arg value="windows"/>
+		
+		<!-- 创建bean实例后，设置属性 -->
+		<property name="name" value="微软"/>
+	</bean>
+	
+	<!-- 实例实例工厂创建bean -->
+	<!-- 创建实例工厂bean -->
+	<bean id="instfactory" class="com.example.factory.InstFactory"/>
+	
+	<bean id="androidphone" factory-bean="instfactory" factory-method="makePhone">
+		<constructor-arg value="android"/>
+		<property name="name" value="魅族"/>
+	</bean>
+</beans>

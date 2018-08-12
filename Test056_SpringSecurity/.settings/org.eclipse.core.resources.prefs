@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//WebContent/client.jsp=UTF-8
+encoding//src/com/example/sky/controller/UserController.java=UTF-8
+encoding//src/com/example/sky/mappers/UserMapper.java=UTF-8
+encoding//src/com/example/sky/pojo/User.java=UTF-8

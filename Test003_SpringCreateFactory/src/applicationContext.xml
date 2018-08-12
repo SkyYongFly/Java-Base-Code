@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 
+		id:唯一标识 ，指代一个类
+		class: 类的全路径名
+	 -->
+	<bean id="helloWorld" class="com.example.daomain.HelloWorld"></bean>
+	
+	<!-- 
+		声明工厂类
+		创建对象的时候会根据factory-method配置属性执行其中的方法getClassInstance
+	 -->
+	<bean id="helloStaticFactory" 
+		  class="com.example.factory.HelloStaticFactory" 
+		  factory-method="getClassInstance">
+	</bean>
+	
+	<!-- 实例工厂类 -->
+	<bean id="helloStaticFactory2" 
+		  class="com.example.factory.HelloStaticFactory2" >
+	</bean>
+	
+	<!-- 使用实例工厂类 -->
+	<bean id="helloWorld2"
+	 	  factory-bean="helloStaticFactory2"
+	 	  factory-method="getClassInstance">
+	</bean>
+	
+</beans>
+           
+

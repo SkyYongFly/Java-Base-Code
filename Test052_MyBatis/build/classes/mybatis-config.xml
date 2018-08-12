@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+ <!-- MyBatis配置属性 ，注意元素配置顺序-->
+ <configuration>
+ 	<!-- 数据库连接配置文件 -->
+ 	<properties resource="database.properties"/>
+ 	
+ 	<!-- 为POJO定义别名 -->
+ 	<typeAliases>
+ 		<!-- 方法一：直接定义POJO别名 -->
+ 		<!-- <typeAlias alias="user"	type="com.example.sky.pojo.User"/> -->
+ 		
+ 		<!-- 方法二：包扫描，默认以POJO名称首字母小写名字为别名-->
+ 		<package name="com.example.sky.pojo"/>
+ 	</typeAliases>
+ 
+ 	<!-- 
+ 		连接数据库环境配置
+ 		1、注意这里配置的default的值，意思选择启用
+ 		     下面哪个数据库，和下面environment的ID值一致 
+ 	-->
+ 	<environments default="mysql">
+ 		<environment id="mysql">
+ 			<!-- 事务管理，采用JDMC管理器 -->
+			<transactionManager type="JDBC">
+			</transactionManager>
+			
+			<!-- 数据库连接，并采用连接池方式 -->
+			<dataSource type="POOLED">
+				<property name="driver"   value="${jdbc.driver}"/>
+				<property name="url" 	  value="${jdbc.url}"/>
+				<property name="username" value="${jdbc.username}"/>
+				<property name="password" value="${jdbc.password}"/>
+			</dataSource> 		
+ 		</environment>
+ 	</environments>
+ 	
+ 	<!-- 注册mapper -->
+ 	<mappers>
+ 		<!-- 方法一：直接注册Mapper接口 -->
+ 		<!--   <mapper class="com.example.sky.mappers.UserMapper"/> -->
+ 		
+ 		<!-- 方法二：包扫描 -->
+ 		<package name="com.example.sky.mappers"/>
+ 	</mappers>
+ 	
+ </configuration> 
